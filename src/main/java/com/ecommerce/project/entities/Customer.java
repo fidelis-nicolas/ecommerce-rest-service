@@ -1,5 +1,6 @@
 package com.ecommerce.project.entities;
 
+
 import jakarta.persistence.*;
 
 @Entity
@@ -16,9 +17,16 @@ public class Customer {
     @Column(name = "address")
     private String customerAddress;
     @Column(name = "password")
-    private String cutomerPassword;
+    private String customerPassword;
 
     public Customer() {
+    }
+
+    public Customer(String customerName, String customerEmail, String customerAddress, String cutomerPassword) {
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerAddress = customerAddress;
+        this.customerPassword = cutomerPassword;
     }
 
     public int getId() {
@@ -54,11 +62,11 @@ public class Customer {
     }
 
     public String getCutomerPassword() {
-        return cutomerPassword;
+        return customerPassword;
     }
 
     public void setCutomerPassword(String cutomerPassword) {
-        this.cutomerPassword = cutomerPassword;
+        this.customerPassword = cutomerPassword;
     }
 
     @Override
@@ -68,7 +76,7 @@ public class Customer {
                 ", customerName='" + customerName + '\'' +
                 ", customerEmail='" + customerEmail + '\'' +
                 ", customerAddress='" + customerAddress + '\'' +
-                ", cutomerPassword='" + cutomerPassword + '\'' +
+                ", cutomerPassword='" + customerPassword + '\'' +
                 '}';
     }
 }

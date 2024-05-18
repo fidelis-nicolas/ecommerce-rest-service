@@ -3,28 +3,29 @@ package com.ecommerce.project.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
-@Entity
-@Table(name = "order")
+//@Entity
+//@Table(name = "order")
 public class Order {
-    @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
-    @Column(name = "product_id")
-    private Product product;
-    @Column(name = "customer_id")
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<Cart> carts;
+
+    @ManyToOne
     private Customer customer;
-    @Column(name = "order_date")
+
     private Date date;
-    @Column(name = "order_status")
     private String status;
 
     public Order() {
     }
 
-    public Order(Product product, Customer customer, Date date, String status) {
-        this.product = product;
+    public Order(List<Cart> carts, Customer customer, Date date, String status) {
+        this.carts = carts;
         this.customer = customer;
         this.date = date;
         this.status = status;
@@ -38,12 +39,12 @@ public class Order {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public List<Cart> getCarts() {
+        return carts;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
     }
 
     public Customer getCustomer() {
@@ -74,7 +75,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", product=" + product +
+                ", carts=" + carts +
                 ", customer=" + customer +
                 ", date=" + date +
                 ", status='" + status + '\'' +

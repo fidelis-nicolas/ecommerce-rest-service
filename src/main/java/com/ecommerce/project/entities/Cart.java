@@ -2,22 +2,45 @@ package com.ecommerce.project.entities;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "cart")
+//@Entity
+//@Table(name = "cart")
 public class Cart {
-    @Column(name = "cart_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private int id;
+    private int order_id;
+
+    @ManyToOne
     private Customer customer;
+    @ManyToOne
     private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Order order;
 
     public Cart() {
     }
 
-    public Cart(Customer customer, Product product) {
+    public Cart(Customer customer, Product product, Order order) {
         this.customer = customer;
         this.product = product;
+        this.order = order;
+    }
+
+    public int getId() {
+        return order_id;
+    }
+
+    public void setId(int id) {
+        this.order_id = id;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Customer getCustomer() {
@@ -40,7 +63,7 @@ public class Cart {
     @Override
     public String toString() {
         return "Cart{" +
-                "id=" + id +
+                "id=" + order_id +
                 ", customer=" + customer +
                 ", product=" + product +
                 '}';
