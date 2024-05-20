@@ -2,9 +2,12 @@ package com.ecommerce.project.service;
 
 import com.ecommerce.project.DAO.AdminDAO;
 import com.ecommerce.project.entities.Admin;
+import com.ecommerce.project.errors.CustomerErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.logging.Logger;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -16,8 +19,13 @@ public class AdminServiceImpl implements AdminService {
         this.adminDAO = adminDAO;
     }
     @Override
-    public Admin getAdminById(int id) {
-        return adminDAO.getAdminById(id);
+    public Admin getAdminById(int id) throws CustomerErrors {
+        Admin admin = adminDAO.getAdminById(id);
+        if(admin==null) {
+            throw new CustomerErrors("Admin with " + id + " does not exist");
+
+        }
+        return admin;
     }
 
     @Override
@@ -28,8 +36,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     @Transactional
-    public Admin updateUsername(int id, String username) {
-        return adminDAO.updateUsername(id, username);
+    public Admin updateUsername(Admin admin) {
+        return adminDAO.updateUsername(admin);
     }
 
     @Override

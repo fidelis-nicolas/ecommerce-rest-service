@@ -1,6 +1,7 @@
 package com.ecommerce.project.controller;
 
 import com.ecommerce.project.entities.Admin;
+import com.ecommerce.project.errors.CustomerErrors;
 import com.ecommerce.project.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class AdminRestController {
     }
 
     @GetMapping("{id}")
-    public Admin getAdminById(@PathVariable int id){
+    public Admin getAdminById(@PathVariable int id) throws CustomerErrors {
         return adminService.getAdminById(id);
     }
 
@@ -35,12 +36,12 @@ public class AdminRestController {
         return adminService.login(username, password);
     }
 
-    @PostMapping("update")
+    @PutMapping("update")
     public Admin update(@RequestBody Admin admin){
-        int id = admin.getId();
-        String username = admin.getUserName();
-        return adminService.updateUsername(id, username);
+        return adminService.updateUsername(admin);
     }
+
+    //Write the code to see all admin
 
 
 

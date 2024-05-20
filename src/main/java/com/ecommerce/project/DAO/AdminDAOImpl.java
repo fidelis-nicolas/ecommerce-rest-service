@@ -29,13 +29,9 @@ public class AdminDAOImpl implements AdminDAO{
     }
 
     @Override
-    @Transactional
-    public Admin updateUsername(int id, String username) {
-        entityManager.createQuery("UPDATE Admin a SET a.userName = :username WHERE a.id = :id")
-                .setParameter("username", username)
-                .setParameter("id", id)
-                .executeUpdate();
-        return entityManager.find(Admin.class, id);
+    public Admin updateUsername(Admin admin) {
+       Admin updateAmin = entityManager.merge(admin);
+       return updateAmin;
     }
 
     @Override

@@ -53,7 +53,8 @@ public class CustomerDAOImpl implements CustomerDAO{
 
     @Override
     public void deleteCustomer(int id) {
-
+        Customer customer = entityManager.find(Customer.class, id);
+        entityManager.remove(customer);
     }
 
     @Override

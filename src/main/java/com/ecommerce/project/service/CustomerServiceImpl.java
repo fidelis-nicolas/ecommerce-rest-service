@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public void deleteCustomer(int id) {
-
+        customerDAO.deleteCustomer(id);
     }
 
     @Override

@@ -7,7 +7,7 @@ public interface AdminDAO {
 
     Admin login (String username, String password);
 
-    Admin updateUsername(int id, String username);
+    Admin updateUsername(Admin admin);
 
     Admin register(Admin admin);
 }

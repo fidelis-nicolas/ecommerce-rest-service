@@ -40,6 +40,10 @@ public class CustomerRestController {
         String passwrod = customer.getCutomerPassword();
         return customerService.login(email, passwrod);
     }
+    @DeleteMapping("delete/{id}")
+    public void deleteCustomer(@PathVariable int id){
+        customerService.deleteCustomer(id);
+    }
 
 
 

@@ -5,11 +5,12 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-//@Entity
-//@Table(name = "order")
+@Entity
+@Table(name = "customer_order")
 public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "order_id")
     private int id;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)

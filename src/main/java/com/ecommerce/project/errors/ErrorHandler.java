@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ErrorHandler {
 
     @ExceptionHandler
-    public ResponseEntity<ErrorMessage> allErrorHandler(CustomerErrors customerErrors){
+    public ResponseEntity<ErrorMessage>  customerErrorHandler(CustomerErrors customerErrors){
         ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setMessage(customerErrors.getMessage());
-        errorMessage.setStatus(HttpStatus.NO_CONTENT.value());
+        errorMessage.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         errorMessage.setTimeStamp(System.currentTimeMillis());
-        return  new ResponseEntity<>(errorMessage, HttpStatusCode.valueOf(500));
+        return  new ResponseEntity<>(errorMessage, HttpStatusCode.valueOf(errorMessage.getStatus()));
     }
+
 }
