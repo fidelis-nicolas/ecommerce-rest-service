@@ -2,11 +2,12 @@ package com.ecommerce.project.service;
 
 import com.ecommerce.project.DAO.AdminDAO;
 import com.ecommerce.project.entities.Admin;
-import com.ecommerce.project.errors.CustomerErrors;
+import com.ecommerce.project.errors.AdminErrors;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Service
@@ -19,10 +20,10 @@ public class AdminServiceImpl implements AdminService {
         this.adminDAO = adminDAO;
     }
     @Override
-    public Admin getAdminById(int id) throws CustomerErrors {
+    public Admin getAdminById(int id) throws AdminErrors {
         Admin admin = adminDAO.getAdminById(id);
         if(admin==null) {
-            throw new CustomerErrors("Admin with " + id + " does not exist");
+            throw new AdminErrors("Admin with " + id + " does not exist");
 
         }
         return admin;
@@ -44,5 +45,10 @@ public class AdminServiceImpl implements AdminService {
     @Transactional
     public Admin register(Admin admin) {
         return adminDAO.register(admin);
+    }
+
+    @Override
+    public List<Admin> getAllAdmins() {
+        return adminDAO.getAllAdmins();
     }
 }

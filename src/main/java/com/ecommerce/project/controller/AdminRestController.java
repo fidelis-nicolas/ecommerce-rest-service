@@ -1,10 +1,12 @@
 package com.ecommerce.project.controller;
 
 import com.ecommerce.project.entities.Admin;
-import com.ecommerce.project.errors.CustomerErrors;
+import com.ecommerce.project.errors.AdminErrors;
 import com.ecommerce.project.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 
@@ -25,7 +27,7 @@ public class AdminRestController {
     }
 
     @GetMapping("{id}")
-    public Admin getAdminById(@PathVariable int id) throws CustomerErrors {
+    public Admin getAdminById(@PathVariable int id) throws AdminErrors {
         return adminService.getAdminById(id);
     }
 
@@ -42,6 +44,11 @@ public class AdminRestController {
     }
 
     //Write the code to see all admin
+
+    @GetMapping("admins")
+    public List<Admin> getAllAdmins(){
+        return adminService.getAllAdmins();
+    }
 
 
 
