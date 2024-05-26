@@ -13,8 +13,11 @@ public class Order {
     @Column(name = "order_id")
     private int id;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
     private List<Cart> carts;
+//    @ManyToOne
+//    @JoinColumn(name = "cart_id")
+//    private Cart order;
 
     @ManyToOne
     private Customer customer;

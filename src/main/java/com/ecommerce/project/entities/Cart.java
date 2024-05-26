@@ -10,21 +10,20 @@ public class Cart {
     private int id;
 
     @ManyToOne
+    @JoinColumn (name = "customer_id")
     private Customer customer;
     @ManyToOne
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+
 
     public Cart() {
     }
 
-    public Cart(Customer customer, Product product, Order order) {
+    public Cart(Customer customer, Product product) {
         this.customer = customer;
         this.product = product;
-        this.order = order;
+
     }
 
     public int getId() {
@@ -33,14 +32,6 @@ public class Cart {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public Customer getCustomer() {
