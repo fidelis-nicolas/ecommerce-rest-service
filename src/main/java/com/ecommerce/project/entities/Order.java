@@ -2,6 +2,7 @@ package com.ecommerce.project.entities;
 
 import jakarta.persistence.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,6 @@ public class Order {
 
     @ManyToOne
     private Customer customer;
-
     private Date date;
     private String status;
 
@@ -85,4 +85,6 @@ public class Order {
                 ", status='" + status + '\'' +
                 '}';
     }
+
+
 }
